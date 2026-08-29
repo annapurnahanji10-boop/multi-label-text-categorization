@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Multi-Label Text Categorization
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for(
+              'static',
+              filename='style.css'
+          ) }}">
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            🧠
+        </div>
+
+        <h1>
+            Multi-Label Text Categorization
+        </h1>
+
+        <p>
+            Machine Learning Based Text Classification System
+        </p>
+
+    </header>
+
+
+    <!-- INPUT -->
+
+    <section class="card">
+
+        <div class="section-title">
+
+            <span>
+                📝
+            </span>
+
+            <h2>
+                Enter Your Text
+            </h2>
+
+        </div>
+
+
+        <form
+            action="/predict"
+            method="POST"
+        >
+
+            <textarea
+                name="text"
+                placeholder="Example: Python developer with machine learning, SQL and TensorFlow experience..."
+                required
+            >{{ text }}</textarea>
+
+
+            <div class="buttons">
+
+                <button
+                    type="submit"
+                    class="predict-btn"
+                >
+                    🔍 Classify Text
+                </button>
+
+
+                <a
+                    href="/"
+                    class="clear-btn"
+                >
+                    🧹 Clear
+                </a>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- RESULTS -->
+
+    {% if predictions %}
+
+    <section class="card results-card">
+
+
+        <div class="result-heading">
+
+            <div>
+
+                <span class="small-title">
+                    🎯 RESULTS
+                </span>
+
+                <h2>
+                    Predicted Categories
+                </h2>
+
+            </div>
+
+
+            <div class="category-count">
+
+                {{ predictions|length }}
+
+                Categories
+
+            </div>
+
+        </div>
+
+
+        <!-- INPUT PREVIEW -->
+
+        <div class="input-preview">
+
+            <strong>
+                Input Text
+            </strong>
+
+            <p>
+                {{ text }}
+            </p>
+
+        </div>
+
+
+        <!-- PREDICTIONS -->
+
+        <div class="prediction-container">
+
+
+            {% for prediction in predictions %}
+
+            <div class="prediction">
+
+
+                <div class="prediction-top">
+
+                    <span class="label-name">
+
+                        ✓ {{ prediction.label }}
+
+                    </span>
+
+
+                    <span class="confidence">
+
+                        {{ prediction.confidence }}%
+
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        style="width:
+                        {{ prediction.confidence }}%">
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            {% endfor %}
+
+
+        </div>
+
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- MODEL INFORMATION -->
+
+    <section class="card">
+
+
+        <div class="section-title">
+
+            <span>
+                📊
+            </span>
+
+            <h2>
+                Model Information
+            </h2>
+
+        </div>
+
+
+        <div class="stats">
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    📚
+                </div>
+
+                <strong>
+                    10,000
+                </strong>
+
+                <span>
+                    Training Records
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    🏷️
+                </div>
+
+                <strong>
+                    30
+                </strong>
+
+                <span>
+                    Categories
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    🎯
+                </div>
+
+                <strong>
+                    85.20%
+                </strong>
+
+                <span>
+                    Exact Match Accuracy
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ⭐
+                </div>
+
+                <strong>
+                    97.79%
+                </strong>
+
+                <span>
+                    Micro F1 Score
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- TECHNOLOGY -->
+
+    <section class="technology">
+
+        <span>
+            Python
+        </span>
+
+        <span>
+            Flask
+        </span>
+
+        <span>
+            Scikit-Learn
+        </span>
+
+        <span>
+            TF-IDF
+        </span>
+
+        <span>
+            Logistic Regression
+        </span>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            Multi-Label Text Categorization
+            • Machine Learning • Flask
+        </p>
+
+    </footer>
+
+
+</div>
+
+
+</body>
+
+</html>
